@@ -5,9 +5,9 @@ import { analyseYoutubeVideo } from "@/action/analyseYoutubeVideo"
 
 const YoutubeVideoForm = () => {
   return (
-    <div className="w-full max-w-2xl mx-auto">
+    <div className="w-full max-w-2xl mx-auto mt-8">
       <Form action={analyseYoutubeVideo}  className="flex flex-col sm:flex-row gap-2 items-center">
-      <input className="flex-1 w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200" name="url" type="text" placeholder="Enter Youtube URL" />
+      <input className="h-12 w-full border-2 rounded-xl px-6 text-base bg-white/10 border-zinc-600 text-white placeholder:text-zinc-400 backdrop-blur-sm" name="url" type="text" placeholder="Enter Youtube URL" />
       <AnalyseButton/>
         </Form>  
     </div>
