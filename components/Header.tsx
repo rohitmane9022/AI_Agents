@@ -6,7 +6,7 @@ import { Button } from "./ui/button";
 const Header = () => {
   return (
     <header className="sticky top-0 z-50 left-0 right-0 px-4 md:px-0 bg-zinc-900/80 backdrop-blur-md border-b border-zinc-800">
-      <div className="md:container lg:px-10 mx-auto">
+      <div className="md:container lg:px-36 mx-auto">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-2">
            
@@ -19,7 +19,7 @@ const Header = () => {
               <Link href="/manage-plan">
                 <Button
                  
-                  className="bg-blue-600 hover:bg-blue-700 text-white border border-blue-500"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium"
                 >
                   Manage Plan
                 </Button>
@@ -35,8 +35,8 @@ const Header = () => {
             <SignedOut>
               <SignInButton mode="modal">
                 <Button
-                  variant="ghost"
-                  className="mr-4 text-white bg-blue-600"
+                  
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium"
                 >
                   Sign In
                 </Button>

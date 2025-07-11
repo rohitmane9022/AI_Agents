@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 
 import "./globals.css";
 import ClientWrapper from "@/components/ClientWrapper";
 import Header from "@/components/Header";
+import { ClerkProvider } from "@clerk/nextjs";
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,15 +22,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={inter.className}>
       <body
-        className={`bg-gradient-to-br from-zinc-900 via-zinc-900 to-zinc-800`}
+        className={`bg-zinc-900`}
       >
-      <ClientWrapper>
-        <Header/>
-        <main>{children}</main>
-        
-        </ClientWrapper>
+        <ClerkProvider> {/* <-- Add this wrapper */}
+          <ClientWrapper>
+            <Header />
+            <main>{children}</main>
+            {/* <Toaster position="bottom-center" /> */}
+          </ClientWrapper>
+        </ClerkProvider>
       </body>
     </html>
   );

@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 export const analyseYoutubeVideo=async(formData:FormData)=>{
     const url= formData.get("url")?.toString()
     console.log(url+"Emty url")
-
+ 
     if(!url) return;
 
      const videoId=getVideoIdFromVideoUrl(url)

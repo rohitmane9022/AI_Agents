@@ -65,7 +65,7 @@ export default function Home() {
     <section className="h-screen bg-gradient-to-br from-zinc-900 via-zinc-900 to-zinc-800">
     <div className="container mx-auto px-4">
     <div className="absolute top-1/4 right-1/4 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl"></div>
-      <div className="flex flex-col items-center gap-10 text-center mt-20">
+      <div className="flex flex-col items-center gap-10 text-center mt-24">
       
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50">
             <div className="flex items-center gap-1">

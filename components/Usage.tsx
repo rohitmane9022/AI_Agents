@@ -5,7 +5,6 @@ import {
   useSchematicEntitlement,
   useSchematicIsPending,
 } from "@schematichq/schematic-react";
-import { Progress } from "./ui/progress";
 
 const Usage = ({
   featureFlag,
@@ -21,87 +20,58 @@ const Usage = ({
     value: isFeatureEnabled,
   } = useSchematicEntitlement(featureFlag);
 
-  const hasUsedAllToken =
-    featureUsage && featureAllocation && featureUsage >= featureAllocation;
-
-  if (isPending) {
-    return <div className="text-gray-500 text-center py-4">Loading...</div>;
-  }
-
-  if (hasUsedAllToken) {
-    return (
-      <div className="bg-white rounded-2xl shadow-sm border border-red-100 p-6">
-        <div className="flex justify-between items-center mb-4">
-  <h2 className="text-xl font-semibold text-gray-800">{title}</h2>
-
-  <div className="px-4 py-2 bg-red-50 rounded-lg">
-    <span className="font-medium text-red-700">{featureUsage}</span>
-    <span className="text-red-400 mx-2">/</span>
-    <span className="font-medium text-red-700">{featureAllocation}</span>
-  </div>
-</div>
-
-
-        <div className="relative">
-            <Progress value={100} className="h-3 rounded-full bg-gray-100 [&>*]:bg-red-600"/>
-            <div className="text-sm text-red-600 mt-2">
-                You have used all available tokens. Please upgrade your plan to continue using this feature.
-            </div>
-        </div>
-
-      </div>
-    );
-  }
-
-  if (!isFeatureEnabled) {
-    return (
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 opacity-50">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-semibold text-gray-800">{title}</h2>
-          <div className="px-4 py-2 bg-gray-50 rounded-lg">
-            <span className="text-gray-500">Feature Disabled</span>
-          </div>
-        </div>
-  
-        <div className="relative">
-          <Progress value={0} className="h-3 rounded-full bg-gray-100" />
-          <p className="text-sm text-gray-500 mt-2">
-            Upgrade to use this feature
-          </p>
-        </div>
-      </div>
-    );
-  }
-
-  const progress= ((featureUsage || 0)/ (featureAllocation || 1)) *100
-
-  const getProgressColor=(percent:number)=>{
-    if(percent >= 80) return "[&>*]:bg-red-600"
-    if(percent >=50) return "[&>*]:bg-yellow-500"
-    return "[&>*]:bg-green-500"
-  }
-
-  const progressColor=getProgressColor(progress)
+  const progress = ((featureUsage || 0) / (featureAllocation || 1)) * 100;
 
   return (
-  <div>
-    <div className="flex justify-between items-center mb-4 gap-4">
-        <h2 className="text-xl font-semibold text-gray-800">{title}</h2>
-        <div className="px-4 py-2 bg-gray-50 rounded-lg">
-            <span className="font-medium text-gray-700">{featureUsage}</span>
-            <span className="mx-2 text-gray-400">/</span>
-            <span className="font-medium text-gray-700">{featureAllocation}</span>
-        </div>
+    <div className="bg-zinc-900/50 backdrop-blur-sm rounded-2xl p-8 shadow-2xl border border-zinc-800/50">
+      <h2 className="text-2xl font-bold text-white mb-6">{title}</h2>
+
+      {isPending ? (
+        <p className="text-zinc-400 text-sm">Loading...</p>
+      ) : !isFeatureEnabled ? (
+        <p className="text-zinc-400 text-sm">
+          Feature is disabled. Upgrade to enable it.
+        </p>
+      ) : (
+        <>
+          {/* Usage Display */}
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex-1">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-white font-medium">Progress</span>
+                <span className="text-zinc-400 font-medium">
+                  {featureUsage} / {featureAllocation}
+                </span>
+              </div>
+
+              {/* Progress Bar */}
+              <div className="w-full h-3 bg-zinc-800 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 rounded-full"
+                  style={{ width: `${progress}%` }}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Message */}
+          {progress >= 100 ? (
+            <p className="text-red-500 text-sm mt-2">
+              You have reached your usage limit.
+            </p>
+          ) : progress >= 80 ? (
+            <p className="text-yellow-400 text-sm mt-2">
+              Warning: You’re approaching your usage limit.
+            </p>
+          ) : (
+            <p className="text-zinc-400 text-sm">
+              Video analysis will begin once you start the process. Track your
+              progress here.
+            </p>
+          )}
+        </>
+      )}
     </div>
-    <div className="relative">
-        <Progress value={progress} className={` h-3 rounded-full bg-gray-100 ${progressColor}`}/>
-        {progress >= 100 ?(
-            <p className="text-sm text-red-600 mt-2">You have reached your usage limit</p>
-        ):progress >= 80 ? (
-            <p className="text-sm text-red-600 mt-2">Warning: You are approaching your usage limit</p>    
-        ):null}
-    </div>
-  </div>
   );
 };
 
