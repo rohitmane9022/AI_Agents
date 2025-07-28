@@ -13,7 +13,7 @@ const client = new SchematicClient({ apiKey })
 
 export async function getTemporaryAccessToken() {
   const user = await currentUser()
-  console.log(user)
+  
   if (!user) return null
 
   try {

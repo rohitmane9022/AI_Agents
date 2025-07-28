@@ -1,3 +1,4 @@
+// Usage.tsx
 "use client";
 
 import { FeatureFlag } from "@/feature/flags";
@@ -9,9 +10,11 @@ import {
 const Usage = ({
   featureFlag,
   title,
+  children,            // ← new
 }: {
   featureFlag: FeatureFlag;
   title: string;
+  children?: React.ReactNode; // ← new
 }) => {
   const isPending = useSchematicIsPending();
   const {
@@ -23,11 +26,13 @@ const Usage = ({
   const progress = ((featureUsage || 0) / (featureAllocation || 1)) * 100;
 
   return (
-    <div className="bg-zinc-900/50 backdrop-blur-sm rounded-2xl p-8 shadow-2xl border border-zinc-800/50">
+    <div className="bg-zinc-900/50 backdrop-blur-sm rounded-2xl p-8 shadow-2xl my-2 border border-zinc-800/50">
       <h2 className="text-2xl font-bold text-white mb-6">{title}</h2>
 
       {isPending ? (
-        <p className="text-zinc-400 text-sm">Loading...</p>
+        <div className="flex justify-center items-center text-white text-center">
+          <div className="w-8 h-8 border-4 border-white border-t-transparent rounded-full animate-spin" />
+        </div>
       ) : !isFeatureEnabled ? (
         <p className="text-zinc-400 text-sm">
           Feature is disabled. Upgrade to enable it.
@@ -69,6 +74,9 @@ const Usage = ({
               progress here.
             </p>
           )}
+
+          {/* 👇  Empty-state / thumbnails / anything else */}
+          {children}
         </>
       )}
     </div>

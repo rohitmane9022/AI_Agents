@@ -26,7 +26,7 @@ const YoutubeVideoDetails = ({ videoId }: { videoId: string }) => {
   }
 
   return (
-    <div className="bg-zinc-900/50 backdrop-blur-sm rounded-2xl p-4 md:p-8 shadow-2xl mt-5 border border-zinc-800/50">
+    <div className="bg-zinc-900/50 backdrop-blur-sm rounded-2xl p-4 md:p-8 shadow-2xl mt-3 border border-zinc-800/50">
       {/* Thumbnail */}
       <div className="aspect-video mb-6 rounded-xl overflow-hidden shadow-lg">
         <Image

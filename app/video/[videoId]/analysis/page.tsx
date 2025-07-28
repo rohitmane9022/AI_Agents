@@ -1,6 +1,8 @@
 'use client'
 
 import ThumnailGeneration from "@/components/ThumnailGeneration"
+import TitleGeneation from "@/components/TitleGeneation"
+import Transcripition from "@/components/Transcripition"
 import Usage from "@/components/Usage"
 import YoutubeVideoDetails from "@/components/YoutubeVideoDetails"
 import { FeatureFlag } from "@/feature/flags"
@@ -27,10 +29,11 @@ const AnalysisPage = () => {
             {/* Youtube Video Details */}
             <YoutubeVideoDetails videoId={videoId}/>
             {/* Thumbnail Generation */}
-            <ThumnailGeneration />
+            <ThumnailGeneration videoId={videoId} />
             {/* Title */}
+            <TitleGeneation videoId={videoId}/>
             {/* Transcripition */}
-            <p className="text-white">Left side</p>
+            <Transcripition videoId={videoId}/>
         </div>
         {/* Right Side */}
         <div className="order-1 lg:order-2 lg:sticky lg:top-20 h-[500px] md:h-[cal(100vh-6rem)]">

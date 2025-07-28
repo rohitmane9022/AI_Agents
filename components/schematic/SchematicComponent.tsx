@@ -9,6 +9,8 @@ async function SchematicComponent({ componentId }: { componentId: string }) {
   // Get access token
   const accessToken = await getTemporaryAccessToken();
 
+
+
   if (!accessToken) {
     throw new Error("Failed to get access token");
   }
