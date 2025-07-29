@@ -11,10 +11,13 @@ interface TranscriptEntry {
 }
 
 const Transcripition = ({ videoId }: { videoId: string }) => {
-  const [transcript, setTranscript] = useState<{
+    
+  const [transcript] = useState<{
     transcript: TranscriptEntry[];
     cache: string;
   } | null>(null);
+
+  console.log(videoId)
 
   const {featureUsageExceeded}= useSchematicEntitlement(
     FeatureFlag.TRANSCRIPTION
@@ -27,7 +30,7 @@ const Transcripition = ({ videoId }: { videoId: string }) => {
             <div className="flex flex-col gap-2 max-h-[250px] overflow-y-auto rounded-md p-4">
                 {
                     transcript ? (
-                        transcript.map((entry, index) => (
+                        transcript.transcript.map((entry, index) => (
                           <div key={index} className="flex gap-2">
                             <span className="text-sm text-gray-400 min-w-[50px]">
                               {entry.timestamp}
