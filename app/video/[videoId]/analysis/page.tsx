@@ -1,5 +1,6 @@
 'use client'
 
+import AiAgentChat from "@/components/AiAgentChat"
 import ThumnailGeneration from "@/components/ThumnailGeneration"
 import TitleGeneation from "@/components/TitleGeneation"
 import Transcripition from "@/components/Transcripition"
@@ -36,9 +37,9 @@ const AnalysisPage = () => {
             <Transcripition videoId={videoId}/>
         </div>
         {/* Right Side */}
-        <div className="order-1 lg:order-2 lg:sticky lg:top-20 h-[500px] md:h-[cal(100vh-6rem)]">
-          <p className="text-white">Right side</p>
+        <div className="order-1 p-6 lg:p-0 lg:order-2 lg:sticky lg:top-24 h-[500px] md:h-[cal(100vh-6rem)]">
             {/* AI Chat */}
+            <AiAgentChat videoId={videoId}/>
         </div>
         </div>
     </div>
