@@ -27,7 +27,7 @@ export async function getVideoDetails(videoId: string) {
       id: [videoDetails.snippet?.channelId || ""]
     })
 
-    const channelDetails = channelResponse.data.items?.[0] // ✅ FIXED
+    const channelDetails = channelResponse.data.items?.[0] 
 
     console.log("🚀 Video details fetched successfully")
 
@@ -48,7 +48,7 @@ export async function getVideoDetails(videoId: string) {
       channel: {
         title: videoDetails.snippet?.channelTitle || "Unknown Channel",
         thumbnail:
-          channelDetails?.snippet?.thumbnails?.default?.url || "", // ✅ Will now work
+          channelDetails?.snippet?.thumbnails?.default?.url || "", 
         subscribers: channelDetails?.statistics?.subscriberCount || "0",
       },
     }
