@@ -14,10 +14,9 @@ function AiAgentChat({ videoId }: { videoId: string }) {
     error,
   } = useChat({
     api: "/api/chat",
-    maxSteps: 5,
-    body: {
-      videoId,
-    },
+  maxSteps: 5,
+  body: { videoId },
+  streamProtocol: "text", 
   });
 
   console.log(messages,"message getting")
